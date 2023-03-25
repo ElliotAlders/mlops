@@ -7,4 +7,4 @@ model = LinearRegression(
 model.fit(x_train_scaled, y_train)
 
 score = model.score(x_train_scaled, y_train)
-#print("Test score: {0:.2f} %".format(100 * score))
+print("Train score: {0:.2f} %".format(100 * score))
