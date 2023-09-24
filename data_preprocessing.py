@@ -6,6 +6,7 @@ df = pd.read_csv("data/assets_data.csv", index_col=0)
 for column in df.drop(columns='target').columns:
     df[f'{column}_ch'] = df[column] / df.shift(1)[column]
 
+'''
 import talib
 
 # Moving Averages
@@ -25,12 +26,12 @@ df['STD'] = df['close'].rolling(window=20).std()
 df['volume_SMA_20'] = talib.SMA(df['volume'], timeperiod=20)
 df['volume_ratio'] = df['volume'] / df['volume'].rolling(window=20).mean()
 
-print(df)
+'''
+
 
 df.dropna(inplace=True)
-#df = df[df['target'] != 0]
+df = df[df['target'] != 0]
 
-print(df)
 
 from sklearn.preprocessing import StandardScaler, MinMaxScaler
 from sklearn.model_selection import train_test_split

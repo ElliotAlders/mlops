@@ -1,5 +1,4 @@
 import yfinance as yf
-import os
 import pandas as pd
 
 btc_ticker = yf.Ticker("BTC-USD")
