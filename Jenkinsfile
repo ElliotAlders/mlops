@@ -30,5 +30,7 @@ pipeline {
                 sh 'dvc add data/'
                 sh 'dvc commit -m "Updated dataset from Jenkins"'
                 sh 'dvc push'
+            }
+        }
     }
 }
