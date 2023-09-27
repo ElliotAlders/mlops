@@ -30,6 +30,9 @@ pipeline {
                 sh 'dvc add data/'
                 sh 'dvc commit'
                 sh 'dvc push'
+                sh 'git add .'
+                sh 'git commit -m "Jenkins dataset update"'
+                sh 'git push'
             }
         }
     }
