@@ -12,7 +12,6 @@ pipeline {
                 sh 'pip install -r requirements.txt'
             }
         }
-        }
         stage('Pull Datasets') {
             steps {
                 sh 'dvc pull'
