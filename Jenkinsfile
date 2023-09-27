@@ -28,7 +28,7 @@ pipeline {
         stage('Push') {
             steps {
                 sh 'dvc add data/'
-                sh 'dvc commit -m "Updated dataset from Jenkins"'
+                sh 'dvc commit'
                 sh 'dvc push'
             }
         }
