@@ -14,7 +14,7 @@ pipeline {
         }
         stage('Pull Datasets') {
             steps {
-                sh 'dvc pull'
+                sh 'dvc pull --force'
             }
         }
         stage('Build') {
@@ -25,5 +25,10 @@ pipeline {
                 sh 'python3 model_testing.py'
             }
         }
+        stage('Push') {
+            steps {
+                sh 'dvc add data/'
+                sh 'dvc commit -m "Updated dataset from Jenkins"'
+                sh 'dvc push'
     }
 }
