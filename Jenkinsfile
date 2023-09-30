@@ -32,7 +32,7 @@ pipeline {
                 sh 'dvc push'
                 sh 'git add .'
                 sh 'git commit -m "Jenkins dataset update"'
-                sh 'git push'
+                sh 'git push origin HEAD:<jenkins>'
             }
         }
     }
