@@ -25,15 +25,5 @@ pipeline {
                 sh 'python3 model_testing.py'
             }
         }
-        stage('Push') {
-            steps {
-                sh 'dvc add data/'
-                sh 'dvc commit'
-                sh 'dvc push'
-                sh 'git add .'
-                sh 'git commit -m "Jenkins dataset update"'
-                sh 'git push origin HEAD:<jenkins>'
-            }
-        }
     }
 }
