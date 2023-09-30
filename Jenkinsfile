@@ -25,14 +25,14 @@ pipeline {
                 sh 'python3 model_testing.py'
             }
         }
-        stage('Push') {
+        stage('Unit Tests') {
             steps {
-                sh 'dvc add data/'
-                sh 'dvc commit'
-                sh 'dvc push'
-                sh 'git add .'
-                sh 'git commit -m "Jenkins dataset update"'
-                sh 'git push'
+                sh 'python3 -m unittest discover -s tests -p "test_*.py"'
+            }
+        }
+        stage('PEP8 Compliance Check') {
+            steps {
+                sh 'flake8 your_project_directory'
             }
         }
     }
