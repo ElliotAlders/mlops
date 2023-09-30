@@ -32,7 +32,7 @@ pipeline {
         }
         stage('PEP8 Compliance Check') {
             steps {
-                sh 'flake8 your_project_directory'
+                sh 'flake8 /var/lib/jenkins/workspace/CI-CD/'
             }
         }
     }
