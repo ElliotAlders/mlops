@@ -27,7 +27,7 @@ class TestModelPreparation(unittest.TestCase):
 
     def test_prepare_model(self):
         # Run the model preparation function
-        prepare_model(data_dir=self.test_data_dir, 
+        prepare_model(data_dir=self.test_data_dir,
                       model_name="test_linear_svr_model.pkl")
 
         # Check if the model file is created
