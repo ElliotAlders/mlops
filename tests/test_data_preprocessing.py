@@ -4,6 +4,7 @@ import os
 
 from data_preprocessing import preprocess_data
 
+
 class TestDataPreprocessing(unittest.TestCase):
     def setUp(self):
         # Create a temporary directory for testing
@@ -47,6 +48,7 @@ class TestDataPreprocessing(unittest.TestCase):
         for file in expected_files:
             file_path = os.path.join(self.test_dir, file)
             self.assertTrue(os.path.exists(file_path))
+
 
 if __name__ == '__main__':
     unittest.main()
