@@ -2,6 +2,7 @@ import pickle
 import pandas as pd
 from sklearn.metrics import mean_squared_error, r2_score
 
+
 def test_model(model_path="linear_svr_model.pkl", data_dir="data"):
     # Load the saved model from the file
     with open(model_path, "rb") as model_file:
@@ -21,6 +22,7 @@ def test_model(model_path="linear_svr_model.pkl", data_dir="data"):
 
     # Return the result as a string
     return result
+
 
 if __name__ == '__main__':
     result = test_model()
