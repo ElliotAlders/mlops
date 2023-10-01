@@ -1,6 +1,7 @@
 import yfinance as yf
 import pandas as pd
 
+
 def create_data():
     btc_ticker = yf.Ticker("BTC-USD")
 
@@ -19,7 +20,12 @@ def create_data():
     df['target'] = df['Tomorrow'].pct_change() * 100
     df = df.drop(['Tomorrow'], axis=1)
 
-    additional_data = yf.download("^GSPC ^DJI ^N225 ^N100 000001.SS CL=F GC=F HG=F ETH-USD XRP-USD NVDA AAPL", start="2014-09-17")
+    assets = (
+        "^GSPC ^DJI ^N225 ^N100 000001.SS "
+        "CL=F GC=F HG=F ETH-USD XRP-USD NVDA AAPL"
+    )
+
+    additional_data = yf.download(assets, start="2014-09-17")
 
     df_add = additional_data.Close
 
@@ -30,6 +36,7 @@ def create_data():
     df_ = df_.fillna(method='ffill')
 
     return df_
+
 
 if __name__ == '__main__':
     data = create_data()

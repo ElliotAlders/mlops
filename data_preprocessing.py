@@ -1,7 +1,7 @@
 import os
 import pandas as pd
 from sklearn.preprocessing import StandardScaler
-from sklearn.model_selection import train_test_split
+
 
 def preprocess_data(input_file="data/assets_data.csv", output_dir="data"):
     # Load the data from the input CSV file
@@ -35,6 +35,7 @@ def preprocess_data(input_file="data/assets_data.csv", output_dir="data"):
     X_test.to_csv(f"{output_dir}/test_features.csv", index=True)
     y_train.to_csv(f"{output_dir}/train_target.csv", index=True)
     y_test.to_csv(f"{output_dir}/test_target.csv", index=True)
+
 
 if __name__ == '__main__':
     preprocess_data()
