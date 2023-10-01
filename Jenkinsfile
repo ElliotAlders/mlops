@@ -25,5 +25,15 @@ pipeline {
                 sh 'python3 model_testing.py'
             }
         }
+        stage('Unit Tests') {
+            steps {
+                sh 'python3 -m unittest discover -s tests -p "test_*.py"'
+            }
+        }
+        stage('PEP8 Compliance Check') {
+            steps {
+                sh 'flake8 /var/lib/jenkins/workspace/CI-CD/'
+            }
+        }
     }
 }
