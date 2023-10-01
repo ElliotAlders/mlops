@@ -32,7 +32,7 @@ pipeline {
         }
         stage('PEP8 Compliance Check') {
             steps {
-                sh 'flake8 /var/lib/jenkins/workspace/CI-CD/'
+                sh 'flake8 --filename=*.py --exclude=venv /var/lib/jenkins/workspace/CI-CD/'
             }
         }
     }
