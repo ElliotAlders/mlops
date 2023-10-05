@@ -12,7 +12,6 @@ def preprocess_data(input_file="data/assets_data.csv", output_dir="data"):
         df[f'{column}_ch'] = df[column] / df.shift(1)[column]
 
     df.dropna(inplace=True)
-    df = df[df['target'] != 0]
 
     X = df.drop('target', axis=1)
     y = df['target']
