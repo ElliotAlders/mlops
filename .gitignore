@@ -2,3 +2,6 @@
 /assets_data.csv
 /data
 ml.ipynb
+__pycache__/*
+tests/__pycache__/*
+test_linear_svr_model.pkl
