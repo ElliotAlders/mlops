@@ -50,7 +50,7 @@ pipeline {
 
                 dir('huggingface-repo') {
                     sh 'git add .'
-                    sh 'git commit -m "Update from Jenkins"'
+                    sh 'git commit -a -m "Update from Jenkins"'
                     sh 'git push'
                 }
             }
