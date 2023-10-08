@@ -33,12 +33,11 @@ def create_data():
 
     df_ = df.merge(df_add, left_index=True, right_index=True, how='left')
 
-    df = df_.fillna(method='ffill')
+    df_ = df_.fillna(method='ffill')
 
-    df.dropna(inplace=True)
-    df = df[df['target'] != 0]
+    df_.dropna(inplace=True)
 
-    return df
+    return df_
 
 
 if __name__ == '__main__':
