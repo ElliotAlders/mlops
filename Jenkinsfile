@@ -42,5 +42,18 @@ pipeline {
                 sh 'docker push lex77/mlops-image'
             }
         }
+        stage('Deploy to HF Space') {
+            steps {
+                sh 'git clone https://huggingface.co/spaces/alexray/btc_predictor huggingface'
+
+                sh 'rsync -av --exclude=README.md /var/lib/jenkins/workspace/CI-CD/* huggingface/'
+
+                dir('huggingface-repo') {
+                    sh 'git add .'
+                    sh 'git commit -m "Update from Jenkins"'
+                    sh 'git push'
+                }
+            }
+        }
     }
 }
