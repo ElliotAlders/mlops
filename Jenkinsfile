@@ -39,7 +39,7 @@ pipeline {
             steps {
                 sh 'docker build -t mlops-image .'
                 sh 'docker tag mlops-image lex77/mlops-image'
-                sh 'docker push lex77/mlops-image'
+                sh 'docker push --cache-from lex77/mlops-image'
             }
         }
         stage('Deploy to HF Space') {
@@ -47,10 +47,10 @@ pipeline {
                 sh 'rm -rf huggingface'
                 sh 'git clone https://huggingface.co/spaces/alexray/btc_predictor huggingface'
                 sh 'rsync -av --exclude=README.md /var/lib/jenkins/workspace/CI-CD/* huggingface/'
-                dir('huggingface-repo') {
+                dir('huggingface') {
                     sh 'git add .'
                     sh 'git commit -a -m "Update from Jenkins"'
-                    sh 'git push'
+                    sh 'git push origin HEAD:main'
                 }
             }
         }
