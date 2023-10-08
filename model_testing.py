@@ -20,10 +20,11 @@ def test_model(model_path="linear_svr_model.pkl", data_dir="data"):
     # Create a string with evaluation metrics
     result = f"Mean Squared Error: {mse}\nR-squared: {r2}"
 
-    # Return the result as a string
+    print("Testing: ")
+    print(result)
+
     return result
 
 
 if __name__ == '__main__':
-    result = test_model()
-    print(result)
+    test_model()
