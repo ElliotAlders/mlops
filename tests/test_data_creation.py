@@ -10,8 +10,8 @@ class TestDataCreation(unittest.TestCase):
         self.assertFalse(result_df.empty)
 
         expected_columns = ['open', 'high', 'low', 'close', 'volume',
-                            'target', '000001.SS', 'AAPL', 'CL=F', 'ETH-USD',
-                            'GC=F', 'HG=F', 'NVDA', 'XRP-USD', '^DJI', '^GSPC',
+                            'target', '000001.SS', 'AAPL', 'CL=F',
+                            'GC=F', 'HG=F', 'NVDA', '^DJI', '^GSPC',
                             '^N100', '^N225']
 
         for col in expected_columns:

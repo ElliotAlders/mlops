@@ -22,7 +22,7 @@ def create_data():
 
     assets = (
         "^GSPC ^DJI ^N225 ^N100 000001.SS "
-        "CL=F GC=F HG=F ETH-USD XRP-USD NVDA AAPL"
+        "CL=F GC=F HG=F NVDA AAPL"
     )
 
     additional_data = yf.download(assets, start="2014-09-17")
