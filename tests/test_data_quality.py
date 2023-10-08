@@ -44,8 +44,8 @@ class TestDataQuality(unittest.TestCase):
         self.assertTrue(date_format_valid, "Date format is not valid.")
 
         # Check format validity for specific columns (e.g., symbols)
-        symbol_columns = ["000001.SS", "AAPL", "CL=F", "ETH-USD", "GC=F",
-                          "HG=F"]
+        symbol_columns = ["000001.SS", "AAPL", "CL=F", "GC=F", "HG=F",
+                          "NVDA", "^DJI", "^GSPC", "^N100", "^N225"]
         valid_symbol_format = self.data[symbol_columns].notna()
         self.assertTrue(valid_symbol_format.all().all(), "Invalid symbol"
                         " format found.")
