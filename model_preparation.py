@@ -19,6 +19,7 @@ def prepare_model(data_dir="data", model_name="linear_svr_model.pkl"):
     r2 = r2_score(y_train, predictions)
 
     # Print evaluation metrics
+    print("Training: ")
     print("Mean Squared Error:", mse)
     print("R-squared:", r2)
 
