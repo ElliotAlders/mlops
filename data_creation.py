@@ -35,6 +35,8 @@ def create_data():
 
     df_ = df_.fillna(method='ffill')
 
+    df_.dropna(inplace=True)
+
     return df_
 
 
