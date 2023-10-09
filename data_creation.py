@@ -37,9 +37,10 @@ def create_data():
 
     df_.dropna(inplace=True)
 
+    df_.to_csv("data/assets_data.csv")
+
     return df_
 
 
 if __name__ == '__main__':
-    data = create_data()
-    data.to_csv("data/assets_data.csv")
+    create_data()
