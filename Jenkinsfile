@@ -37,7 +37,7 @@ pipeline {
         }
         stage('Docker Build and Push') {
             steps {
-                sh 'docker build -t mlops-image .'
+                sh 'docker build -t mlops-image -f Dockerfile .'
                 sh 'docker tag mlops-image lex77/mlops-image'
                 sh 'docker push lex77/mlops-image'
             }
@@ -45,7 +45,7 @@ pipeline {
         stage('Deploy to HF Space') {
             steps {
                 sh 'rm -rf huggingface'
-                sh 'git clone https://huggingface.co/spaces/alexray/btc_predictor huggingface'
+                sh 'git clone https://alexray:${HUGGINGFACE_TOKEN}@huggingface.co/spaces/alexray/btc_predictor huggingface'
                 sh 'rsync -av --exclude=README.md /var/lib/jenkins/workspace/CI-CD/* huggingface/'
                 dir('huggingface') {
                     sh 'git add .'
