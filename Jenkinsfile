@@ -45,7 +45,7 @@ pipeline {
         stage('Deploy to HF Space') {
             steps {
                 sh 'rm -rf huggingface'
-                sh 'git clone https://alexray:${HUGGINGFACE_TOKEN}@huggingface.co/spaces/alexray/btc_predictor huggingface'
+                sh 'git clone https://alexray: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@huggingface.co/spaces/alexray/btc_predictor huggingface'
                 sh 'rsync -av --exclude=README.md /var/lib/jenkins/workspace/CI-CD/* huggingface/'
                 dir('huggingface') {
                     sh 'git add .'
