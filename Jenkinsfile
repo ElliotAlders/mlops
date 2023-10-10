@@ -14,6 +14,7 @@ pipeline {
         }
         stage('Build') {
             steps {
+                sh 'source venv/bin/activate'
                 sh 'python3 data_creation.py'
                 sh 'python3 data_preprocessing.py'
                 sh 'python3 model_preparation.py'
