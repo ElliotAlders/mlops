@@ -14,11 +14,12 @@ pipeline {
         }
         stage('Build') {
             steps {
-                sh '. venv/bin/activate'
-                sh 'python3 data_creation.py'
-                sh 'python3 data_preprocessing.py'
-                sh 'python3 model_preparation.py'
-                sh 'python3 model_testing.py'
+                dir('venv/bin') {
+                    sh 'python3 data_creation.py'
+                    sh 'python3 data_preprocessing.py'
+                    sh 'python3 model_preparation.py'
+                    sh 'python3 model_testing.py'
+                }
             }
         }
         stage('Unit Tests') {
