@@ -14,6 +14,7 @@ pipeline {
         }
         stage('Build') {
             steps {
+                sh 'mkdir -p data'
                 sh 'venv/bin/python3 data_creation.py'
                 sh 'venv/bin/python3 data_preprocessing.py'
                 sh 'venv/bin/python3 model_preparation.py'
