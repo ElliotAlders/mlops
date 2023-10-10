@@ -3,4 +3,5 @@ yfinance==0.2.30
 pandas==2.1.1
 numpy==1.26.0
 dvc
+dvc-gdrive
 flake8
