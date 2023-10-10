@@ -14,7 +14,7 @@ pipeline {
         }
         stage('Pull Datasets') {
             steps {
-                sh 'dvc pull --force'
+                sh 'venv/bin/dvc pull --force'
             }
         }
         stage('Build') {
