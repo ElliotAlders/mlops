@@ -28,7 +28,7 @@ pipeline {
         }
         stage('PEP8 Compliance Check') {
             steps {
-                sh 'venv/bin/flake8 --filename=*.py --exclude=venv /var/lib/jenkins/workspace/CI-CD/'
+                sh 'venv/bin/flake8 --filename=*.py --exclude=venv /var/jenkins_home/workspace/CI-CD/'
             }
         }
         stage('Docker Build and Push') {
