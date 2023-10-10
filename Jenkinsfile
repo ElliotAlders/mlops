@@ -12,11 +12,6 @@ pipeline {
                 sh 'venv/bin/pip install -r requirements.txt'
             }
         }
-        stage('Pull Datasets') {
-            steps {
-                sh 'venv/bin/dvc pull --force'
-            }
-        }
         stage('Build') {
             steps {
                 sh 'python3 data_creation.py'
