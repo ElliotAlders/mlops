@@ -14,22 +14,20 @@ pipeline {
         }
         stage('Build') {
             steps {
-                dir('venv/bin') {
-                    sh 'python3 data_creation.py'
-                    sh 'python3 data_preprocessing.py'
-                    sh 'python3 model_preparation.py'
-                    sh 'python3 model_testing.py'
-                }
+                sh 'venv/bin/python3 data_creation.py'
+                sh 'venv/bin/python3 data_preprocessing.py'
+                sh 'venv/bin/python3 model_preparation.py'
+                sh 'venv/bin/python3 model_testing.py'
             }
         }
         stage('Unit Tests') {
             steps {
-                sh 'python3 -m unittest discover -s tests -p "test_*.py"'
+                sh 'venv/bin/python3 -m unittest discover -s tests -p "test_*.py"'
             }
         }
         stage('PEP8 Compliance Check') {
             steps {
-                sh 'flake8 --filename=*.py --exclude=venv /var/lib/jenkins/workspace/CI-CD/'
+                sh 'venv/bin/flake8 --filename=*.py --exclude=venv /var/lib/jenkins/workspace/CI-CD/'
             }
         }
         stage('Docker Build and Push') {
