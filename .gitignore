@@ -7,3 +7,4 @@ tests/__pycache__/*
 test_linear_svr_model.pkl
 ~$oject_plan.rtf
 Project_plan.rtf
+/venv
