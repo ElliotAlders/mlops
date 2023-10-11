@@ -3,8 +3,6 @@ pipeline {
     stages {
         stage('Setup') {
             steps {
-                sh 'apt-get update '
-                sh 'apt-get install python3 pip python3.11-venv rsync'
                 sh 'python3 -m venv venv'
                 sh '. venv/bin/activate'
             }
