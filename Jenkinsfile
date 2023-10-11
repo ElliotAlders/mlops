@@ -31,13 +31,6 @@ pipeline {
                 sh 'venv/bin/flake8 --filename=*.py --exclude=venv /var/jenkins_home/workspace/CI-CD/'
             }
         }
-        stage('Docker Build and Push') {
-            steps {
-                sh 'docker build -t mlops-image -f Dockerfile .'
-                sh 'docker tag mlops-image lex77/mlops-image'
-                sh 'docker push lex77/mlops-image'
-            }
-        }
         stage('Deploy to HF Space') {
             steps {
                 sh 'rm -rf huggingface'
