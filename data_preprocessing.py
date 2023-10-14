@@ -4,6 +4,21 @@ from sklearn.preprocessing import StandardScaler
 
 
 def preprocess_data(input_file="data/assets_data.csv", output_dir="data"):
+    # Create the output directory if it doesn't exist
+    os.makedirs(output_dir, exist_ok=True)
+
+    # Check if the output files already exist, and if so, return early
+    output_files = [
+        f"{output_dir}/train_features.csv",
+        f"{output_dir}/test_features.csv",
+        f"{output_dir}/train_target.csv",
+        f"{output_dir}/test_target.csv",
+    ]
+
+    if all(os.path.exists(file) for file in output_files):
+        print("Preprocessed data files already exist. Skipping preprocessing.")
+        return
+
     # Load the data from the input CSV file
     df = pd.read_csv(input_file, index_col=0)
 
@@ -25,9 +40,6 @@ def preprocess_data(input_file="data/assets_data.csv", output_dir="data"):
     train_size = len(df) - 90
     X_train, X_test = X_scaled_df[:train_size], X_scaled_df[train_size:]
     y_train, y_test = y[:train_size], y[train_size:]
-
-    # Create the output directory if it doesn't exist
-    os.makedirs(output_dir, exist_ok=True)
 
     # Save the preprocessed data to CSV files in the specified output directory
     X_train.to_csv(f"{output_dir}/train_features.csv", index=True)
