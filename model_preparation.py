@@ -8,7 +8,7 @@ def prepare_model(data_dir="data", model_name="linear_svr_model.pkl"):
     # Load training data
     X_train = pd.read_csv(f"{data_dir}/train_features.csv", index_col=0)
     y_train = pd.read_csv(f"{data_dir}/train_target.csv", index_col=0)
-    
+
     # Flatten y_train to a 1D array
     y_train = y_train.values.ravel()
 
