@@ -8,11 +8,15 @@ def prepare_model(data_dir="data", model_name="linear_svr_model.pkl"):
     # Load training data
     X_train = pd.read_csv(f"{data_dir}/train_features.csv", index_col=0)
     y_train = pd.read_csv(f"{data_dir}/train_target.csv", index_col=0)
+    
+    # Flatten y_train to a 1D array
+    y_train = y_train.values.ravel()
 
     print(X_train.shape)
     print(y_train.shape)
 
-    model = LinearSVR(random_state=42, max_iter=10000)
+    # Create the LinearSVR model with 'auto' for dual
+    model = LinearSVR(random_state=42, max_iter=10000, dual='auto')
     model.fit(X_train, y_train)
     predictions = model.predict(X_train)
     mse = mean_squared_error(y_train, predictions)
