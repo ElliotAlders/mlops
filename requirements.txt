@@ -1,5 +1,5 @@
 ﻿scikit-learn==1.3.0
-yfinance==0.2.30
+yfinance
 pandas==2.1.1
 numpy==1.26.0
 dvc
