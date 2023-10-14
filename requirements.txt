@@ -1,7 +1,7 @@
-﻿scikit-learn==1.3.0
+﻿scikit-learn
 yfinance
-pandas==2.1.1
-numpy==1.26.0
+pandas
+numpy
 dvc
 dvc-gdrive
 flake8
