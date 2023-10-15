@@ -30,6 +30,10 @@ def prepare_model(data_dir="data", model_name="linear_svr_model.pkl"):
     with open(model_name, "wb") as model_file:
         pickle.dump(model, model_file)
 
+    predictions_df = pd.DataFrame(predictions, index=X_train.index,
+                                  columns=["Prediction"])
+    predictions_df.to_csv(f"{data_dir}/train_prediction.csv", index=True)
+
 
 if __name__ == '__main__':
     prepare_model()

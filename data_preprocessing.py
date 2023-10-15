@@ -3,16 +3,16 @@ import pandas as pd
 from sklearn.preprocessing import StandardScaler
 
 
-def preprocess_data(input_file="data/assets_data.csv", output_dir="data"):
+def preprocess_data(input_file="data/assets_data.csv", data_dir="data"):
     # Create the output directory if it doesn't exist
-    os.makedirs(output_dir, exist_ok=True)
+    os.makedirs(data_dir, exist_ok=True)
 
     # Check if the output files already exist, and if so, return early
     output_files = [
-        f"{output_dir}/train_features.csv",
-        f"{output_dir}/test_features.csv",
-        f"{output_dir}/train_target.csv",
-        f"{output_dir}/test_target.csv",
+        f"{data_dir}/train_features.csv",
+        f"{data_dir}/test_features.csv",
+        f"{data_dir}/train_target.csv",
+        f"{data_dir}/test_target.csv",
     ]
 
     if all(os.path.exists(file) for file in output_files):
@@ -42,10 +42,10 @@ def preprocess_data(input_file="data/assets_data.csv", output_dir="data"):
     y_train, y_test = y[:train_size], y[train_size:]
 
     # Save the preprocessed data to CSV files in the specified output directory
-    X_train.to_csv(f"{output_dir}/train_features.csv", index=True)
-    X_test.to_csv(f"{output_dir}/test_features.csv", index=True)
-    y_train.to_csv(f"{output_dir}/train_target.csv", index=True)
-    y_test.to_csv(f"{output_dir}/test_target.csv", index=True)
+    X_train.to_csv(f"{data_dir}/train_features.csv", index=True)
+    X_test.to_csv(f"{data_dir}/test_features.csv", index=True)
+    y_train.to_csv(f"{data_dir}/train_target.csv", index=True)
+    y_test.to_csv(f"{data_dir}/test_target.csv", index=True)
 
 
 if __name__ == '__main__':
