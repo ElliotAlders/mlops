@@ -23,6 +23,7 @@ class TestModelPreparation(unittest.TestCase):
         # Clean up temporary test data
         os.remove(os.path.join(self.test_data_dir, "train_features.csv"))
         os.remove(os.path.join(self.test_data_dir, "train_target.csv"))
+        os.remove(os.path.join(self.test_data_dir, "train_prediction.csv"))
         os.rmdir(self.test_data_dir)
 
     def test_prepare_model(self):
