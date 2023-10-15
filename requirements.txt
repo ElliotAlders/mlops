@@ -3,5 +3,6 @@ yfinance
 pandas
 numpy
 dvc
-dvc-gdrive
 flake8
+matplotlib
+Flask

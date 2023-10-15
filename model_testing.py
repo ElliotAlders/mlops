@@ -23,6 +23,10 @@ def test_model(model_path="linear_svr_model.pkl", data_dir="data"):
     print("Testing: ")
     print(result)
 
+    predictions_df = pd.DataFrame(predictions, index=X_test.index,
+                                  columns=["Prediction"])
+    predictions_df.to_csv(f"{data_dir}/test_prediction.csv", index=True)
+
     return result
 
 
