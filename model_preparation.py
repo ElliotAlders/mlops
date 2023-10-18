@@ -1,29 +1,32 @@
-from sklearn.svm import LinearSVR
+from sklearn.svm import SVR
 from sklearn.metrics import mean_squared_error, r2_score
 import pandas as pd
 import pickle
 
 
-def prepare_model(data_dir="data", model_name="linear_svr_model.pkl"):
+def prepare_model(data_dir="data", model_name="rbf_svr_model.pkl"):
     # Load training data
     X_train = pd.read_csv(f"{data_dir}/train_features.csv", index_col=0)
     y_train = pd.read_csv(f"{data_dir}/train_target.csv", index_col=0)
 
-    # Flatten y_train to a 1D array
     y_train = y_train.values.ravel()
 
     print(X_train.shape)
     print(y_train.shape)
 
-    # Create the LinearSVR model with 'auto' for dual
-    model = LinearSVR(random_state=42, max_iter=10000, dual='auto')
+    model = SVR(
+        kernel='rbf',
+        C=1.0,
+        epsilon=0.1,
+    )
+
     model.fit(X_train, y_train)
     predictions = model.predict(X_train)
     mse = mean_squared_error(y_train, predictions)
     r2 = r2_score(y_train, predictions)
 
     # Print evaluation metrics
-    print("Training: ")
+    print("Training:")
     print("Mean Squared Error:", mse)
     print("R-squared:", r2)
 

@@ -1,10 +1,5 @@
-/btc_data.csv
-/assets_data.csv
 /data
-ml.ipynb
 __pycache__/*
 tests/__pycache__/*
 test_linear_svr_model.pkl
-~$oject_plan.rtf
-Project_plan.rtf
 /venv
