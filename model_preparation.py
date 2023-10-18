@@ -12,7 +12,16 @@ def prepare_model(data_dir="data", model_name="linear_svr_model.pkl"):
     print(X_train.shape)
     print(y_train.shape)
 
-    model = LinearSVR(random_state=42, max_iter=10000)
+    model = LinearSVR(
+        random_state=42,
+        max_iter=10000,
+        dual=False,
+        C=1.0,
+        epsilon=0.1,
+        tol=1e-4,
+        loss='squared_epsilon_insensitive'
+        )
+
     model.fit(X_train, y_train)
     predictions = model.predict(X_train)
     mse = mean_squared_error(y_train, predictions)
