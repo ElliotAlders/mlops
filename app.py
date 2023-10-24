@@ -19,6 +19,7 @@ predictions['Signal'] = 'None'
 predictions.loc[predictions['Prediction'] > 0, 'Signal'] = 'Buy'
 predictions.loc[predictions['Prediction'] < 0, 'Signal'] = 'Sell'
 
+
 @app.route('/', methods=['GET', 'POST'])
 def plot():
     starting_value = 100  # Default starting value
@@ -33,7 +34,6 @@ def plot():
 
     for date in assets_data.index:
         if date in predictions.index:
-            close_price = assets_data.loc[date, 'close']
             signal = predictions.loc[date, 'Signal']
 
             if signal == 'Buy':
@@ -46,7 +46,8 @@ def plot():
 
         investment_value.append(current_value)
 
-    investment_data = pd.DataFrame(data=investment_value, index=assets_data.index,
+    investment_data = pd.DataFrame(data=investment_value,
+                                   index=assets_data.index,
                                    columns=['Investment Value'])
 
     # Create the plot
@@ -73,7 +74,9 @@ def plot():
     img.seek(0)
     plot_url = base64.b64encode(img.getvalue()).decode()
 
-    return render_template('plot.html', plot_url=plot_url, starting_value=starting_value)
+    return render_template('plot.html', plot_url=plot_url,
+                           starting_value=starting_value)
+
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=7860)
