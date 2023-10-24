@@ -11,7 +11,6 @@ assets_data = pd.read_csv("data/assets_data.csv", index_col=0)
 train_predictions = pd.read_csv("data/train_prediction.csv", index_col=0)
 test_predictions = pd.read_csv("data/test_prediction.csv", index_col=0)
 
-# Combine train and test predictions into one DataFrame
 predictions = pd.concat([train_predictions, test_predictions])
 
 # Create a column for buy/sell signals
@@ -28,7 +27,7 @@ def plot():
 
     # Calculate the value of the investment
     investment_value = []
-    current_value = starting_value  # Starting value set by the user
+    current_value = starting_value
     buy_dates = []
     sell_dates = []
 
@@ -49,6 +48,13 @@ def plot():
     investment_data = pd.DataFrame(data=investment_value,
                                    index=assets_data.index,
                                    columns=['Investment Value'])
+
+    table_data = pd.DataFrame({
+        'Date': assets_data.index,
+        'BTC Price': assets_data['close'],
+        'Prediction': predictions['Prediction'],
+        'Investment Value': investment_data['Investment Value']
+    })
 
     # Create the plot
     plt.figure(figsize=(12, 6))
@@ -75,7 +81,7 @@ def plot():
     plot_url = base64.b64encode(img.getvalue()).decode()
 
     return render_template('plot.html', plot_url=plot_url,
-                           starting_value=starting_value)
+                           starting_value=starting_value, data=table_data)
 
 
 if __name__ == '__main__':

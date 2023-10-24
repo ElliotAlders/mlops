@@ -5,6 +5,8 @@ import os
 
 def create_data():
 
+    os.makedirs("data", exist_ok=True)
+
     if os.path.exists("data/assets_data.csv"):
         print("Data file already exists. Skipping download.")
         return pd.read_csv("data/assets_data.csv",
