@@ -6,3 +6,4 @@ dvc==3.26.2
 flake8==6.1.0
 matplotlib==3.8.0
 flask==3.0.0
+plotly==5.17.0

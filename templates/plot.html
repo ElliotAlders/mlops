@@ -2,13 +2,31 @@
 <html>
 <head>
     <title>BTC Price and Investment Plot</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 </head>
 <body>
     <h1>BTC Price and Investment Plot</h1>
-    <img src="data:image/png;base64,{{ plot_url }}" alt="BTC Price vs. Investment Value with Buy/Sell Signals">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h3>Interactive Plot</h3>
+                <div id="plotly-plot">
+                    {{ plot_url | safe }}
+                </div>
+            </div>
+        </div>
+    </div>
     <form method="POST">
         Starting Value: <input type="number" name="starting_value" step="0.01" value="{{ starting_value }}">
         <input type="submit" value="Update">
-    </form>    
+    </form>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h3>Table</h3>
+                {% include 'table.html' %}
+            </div>
+        </div>
+    </div>
 </body>
 </html>
