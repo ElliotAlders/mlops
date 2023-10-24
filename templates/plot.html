@@ -6,5 +6,9 @@
 <body>
     <h1>BTC Price and Investment Plot</h1>
     <img src="data:image/png;base64,{{ plot_url }}" alt="BTC Price vs. Investment Value with Buy/Sell Signals">
+    <form method="POST">
+        Starting Value: <input type="number" name="starting_value" step="0.01" value="{{ starting_value }}">
+        <input type="submit" value="Update">
+    </form>    
 </body>
 </html>
