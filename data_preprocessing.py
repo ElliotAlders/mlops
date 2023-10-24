@@ -4,18 +4,8 @@ from sklearn.preprocessing import StandardScaler
 
 
 def preprocess_data(input_file="data/assets_data.csv", data_dir="data"):
+
     os.makedirs(data_dir, exist_ok=True)
-
-    output_files = [
-        f"{data_dir}/train_features.csv",
-        f"{data_dir}/test_features.csv",
-        f"{data_dir}/train_target.csv",
-        f"{data_dir}/test_target.csv",
-    ]
-
-    if all(os.path.exists(file) for file in output_files):
-        print("Preprocessed data files already exist. Skipping preprocessing.")
-        return
 
     df = pd.read_csv(input_file, index_col=0)
 

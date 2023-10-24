@@ -1,8 +1,6 @@
 import pandas as pd
-import matplotlib.pyplot as plt
 from flask import Flask, render_template, request
-import io
-import base64
+import plotly.graph_objs as go
 
 app = Flask(__name__, template_folder="templates")
 
@@ -21,7 +19,7 @@ predictions.loc[predictions['Prediction'] < 0, 'Signal'] = 'Sell'
 
 @app.route('/', methods=['GET', 'POST'])
 def plot():
-    starting_value = 100  # Default starting value
+    starting_value = 400  # Default starting value
     if request.method == 'POST':
         starting_value = float(request.form['starting_value'])
 
@@ -56,29 +54,50 @@ def plot():
         'Investment Value': investment_data['Investment Value']
     })
 
-    # Create the plot
-    plt.figure(figsize=(12, 6))
-    plt.plot(assets_data.index, assets_data['close'], label="BTC Price",
-             color='blue', zorder=2)
-    plt.plot(investment_data.index, investment_data['Investment Value'],
-             label="Investment Value", color='yellow', zorder=2)
-    plt.xlabel("Date")
-    plt.ylabel("Value")
-    plt.title("BTC Price vs. Investment Value with Buy/Sell Signals")
-    plt.legend()
-    plt.grid(True)
+    fig = go.Figure()
 
-    # Add Buy and Sell signal markers
-    plt.scatter(buy_dates, assets_data.loc[buy_dates, 'close'], label="Buy",
-                color='green', marker='^', s=5, zorder=2)
-    plt.scatter(sell_dates, assets_data.loc[sell_dates, 'close'], label="Sell",
-                color='red', marker='v', s=5, zorder=2)
+    # Add the BTC Price line
+    fig.add_trace(go.Scatter(
+        x=assets_data.index,
+        y=assets_data['close'],
+        mode='lines',
+        name='BTC Price'
+        ))
 
-    # Convert the Matplotlib plot to a base64 encoded PNG image
-    img = io.BytesIO()
-    plt.savefig(img, format='png')
-    img.seek(0)
-    plot_url = base64.b64encode(img.getvalue()).decode()
+    # Add the Investment Value line
+    fig.add_trace(go.Scatter(
+        x=investment_data.index,
+        y=investment_data['Investment Value'],
+        mode='lines',
+        name='Investment Value'
+        ))
+
+    # Add Buy and Sell signals as markers
+    fig.add_trace(go.Scatter(
+        x=buy_dates,
+        y=assets_data.loc[buy_dates, 'close'],
+        mode='markers',
+        name='Buy',
+        marker_symbol='triangle-up',
+        marker=dict(size=10, color='green')
+        ))
+
+    fig.add_trace(go.Scatter(
+        x=sell_dates,
+        y=assets_data.loc[sell_dates, 'close'],
+        mode='markers',
+        name='Sell',
+        marker_symbol='triangle-down',
+        marker=dict(size=10, color='red')
+        ))
+
+    fig.update_layout(
+        xaxis_title='Date',
+        yaxis_title='Value',
+        title='BTC Price vs. Investment Value with Buy/Sell Signals',
+    )
+
+    plot_url = fig.to_html(full_html=False)
 
     return render_template('plot.html', plot_url=plot_url,
                            starting_value=starting_value, data=table_data)
