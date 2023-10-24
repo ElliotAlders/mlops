@@ -5,10 +5,7 @@ import os
 
 def create_data():
 
-    if os.path.exists("data/assets_data.csv"):
-        print("Data file already exists. Skipping download.")
-        return pd.read_csv("data/assets_data.csv",
-                           index_col=0, parse_dates=True)
+    os.makedirs("data", exist_ok=True)
 
     btc_ticker = yf.Ticker("BTC-USD")
 
