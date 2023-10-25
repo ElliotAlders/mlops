@@ -29,17 +29,21 @@ def plot():
     buy_dates = []
     sell_dates = []
 
+    prev_signal = None  # Track the previous signal
     for date in assets_data.index:
         if date in predictions.index:
             signal = predictions.loc[date, 'Signal']
 
             if signal == 'Buy':
-                buy_dates.append(date)
                 price_change = assets_data.loc[date, 'target'] / 100
                 current_value *= (1 + price_change)
+                if signal != prev_signal:
+                    buy_dates.append(date)
             elif signal == 'Sell':
-                sell_dates.append(date)
-                pass
+                if signal != prev_signal:
+                    sell_dates.append(date)
+
+            prev_signal = signal
 
         investment_value.append(current_value)
 
