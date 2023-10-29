@@ -1,0 +1,28 @@
+schema: '2.0'
+stages:
+  data_download:
+    cmd: python3 data_creation.py
+  data_preprocess:
+    cmd: python3 data_preprocessing.py
+    deps:
+    - path: data/assets_data.csv
+      hash: md5
+      md5: 97456783d1f48437017a5ca4af307183
+      size: 915609
+    outs:
+    - path: data/test_features.csv
+      hash: md5
+      md5: ac06778e094b704ad245fbeeae306588
+      size: 54210
+    - path: data/test_target.csv
+      hash: md5
+      md5: d09dfd8c759aa62614b0229964b96348
+      size: 2803
+    - path: data/train_features.csv
+      hash: md5
+      md5: 67e2401341397210ebd01b10cfd2b9a3
+      size: 1972110
+    - path: data/train_target.csv
+      hash: md5
+      md5: 6bfbd3325c20c39082e7d872cf29c592
+      size: 100454
