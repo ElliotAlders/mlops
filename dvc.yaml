@@ -1,0 +1,24 @@
+stages:
+  data_download:
+    cmd: python data_creation.py
+
+  data_preprocess:
+    interpreter: C:/Users/alex/AppData/Local/Programs/Python/Python310/python.exe
+    cmd: python data_preprocessing.py
+    deps:
+      - data/assets_data.csv
+
+
+  train_model:
+    cmd: python model_preparation.py
+    deps:
+      - data/train_features.csv
+      - data/train_target.csv
+
+  evaluate_model:
+    cmd: python model_testing.py
+    deps:
+      - linear_svr_model.pkl
+      - data/test_features.csv
+      - data/test_target.csv
+
