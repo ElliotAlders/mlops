@@ -9,15 +9,12 @@ from model_testing import test_model
 
 class TestModelTesting(unittest.TestCase):
     def setUp(self):
-        # Create a temporary directory
         self.temp_dir = 'temp_test'
         os.mkdir(self.temp_dir)
 
-        # Create temporary test data directory
         self.test_data_dir = os.path.join(self.temp_dir, 'data')
         os.mkdir(self.test_data_dir)
 
-        # Create temporary test data with the required pattern
         test_features = pd.DataFrame({
             'open': [0.6095, 0.5759, 0.6418],
             'high': [0.6112, -0.7703, 0.13523],
@@ -33,7 +30,6 @@ class TestModelTesting(unittest.TestCase):
         test_target.to_csv(os.path.join(self.test_data_dir, 'test_target.csv'),
                            index=True)
 
-        # Create a simple linear regression model and save it to a pickle file
         model = LinearRegression()
         model.fit(test_features, test_target)
         with open(os.path.join(self.temp_dir,
@@ -41,16 +37,13 @@ class TestModelTesting(unittest.TestCase):
             pickle.dump(model, model_file)
 
     def tearDown(self):
-        # Clean up temporary directory and files
         shutil.rmtree(self.temp_dir)
 
     def test_test_model(self):
-        # Call the function with the temporary directory and model path
         result = test_model(model_path=os.path.join(self.temp_dir,
                                                     'test_model.pkl'),
                             data_dir=self.test_data_dir)
 
-        # Assert that the result is as expected
         self.assertTrue("Mean Squared Error:" in result)
         self.assertTrue("R-squared:" in result)
 

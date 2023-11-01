@@ -7,12 +7,10 @@ from data_preprocessing import preprocess_data
 
 class TestDataPreprocessing(unittest.TestCase):
     def setUp(self):
-        # Create a temporary directory for testing
         self.test_dir = "test_data"
         os.makedirs(self.test_dir, exist_ok=True)
 
     def tearDown(self):
-        # Clean up the temporary directory
         if os.path.exists(self.test_dir):
             for file in os.listdir(self.test_dir):
                 file_path = os.path.join(self.test_dir, file)
@@ -21,7 +19,6 @@ class TestDataPreprocessing(unittest.TestCase):
             os.rmdir(self.test_dir)
 
     def test_preprocess_data(self):
-        # Create a sample CSV file for testing
         sample_data = {
             'open': [100, 101, 102, 103, 104],
             'high': [105, 106, 107, 108, 109],
@@ -34,10 +31,8 @@ class TestDataPreprocessing(unittest.TestCase):
         csv_file = os.path.join(self.test_dir, "sample_data.csv")
         df.to_csv(csv_file, index=False)
 
-        # Call the preprocess_data function on the sample data
         preprocess_data(csv_file, self.test_dir)
 
-        # Check if the expected output CSV files exist
         expected_files = [
             "train_features.csv",
             "test_features.csv",
